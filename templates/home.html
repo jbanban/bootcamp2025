@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+    <div class="max-w-4xl mx-auto bg-white border-2 border-black p-8 min-h-96 relative">
+        <!-- Logout Button -->
+        <a href="{{ url_for('logout') }}" class="absolute top-5 right-5 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm transition-colors">
+            Logout
+        </a>
+
+        <div class="flex justify-between items-start h-full mt-20">
+            <!-- User Information -->
+            <div class="flex-1 pr-8">
+                <div class="mb-4">
+                    <span class="font-bold text-gray-800">Name:</span>
+                    <span class="ml-2 text-gray-600">{{ user.name if user.name else 'Not provided' }}</span>
+                </div>
+                
+                <div class="mb-4">
+                    <span class="font-bold text-gray-800">Address:</span>
+                    <span class="ml-2 text-gray-600">{{ user.address if user.address else 'Not provided' }}</span>
+                </div>
+                
+                <div class="mb-4">
+                    <span class="font-bold text-gray-800">Birthdate:</span>
+                    <span class="ml-2 text-gray-600">{{ user.birthdate if user.birthdate else 'Not provided' }}</span>
+                </div>
+            </div>
+
+            <!-- Profile Image -->
+            <div class="flex-shrink-0 text-center">
+                {% if image_url %}
+                    <div class="w-36 h-36 border-2 border-black rounded-full overflow-hidden bg-gray-50">
+                        <img src="{{ image_url }}" alt="Profile Image" class="w-full h-full object-cover">
+                    </div>
+                {% else %}
+                    <div class="w-36 h-36 border-2 border-black rounded-full bg-gray-50 flex items-center justify-center text-sm text-gray-500">
+                        No Image
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
